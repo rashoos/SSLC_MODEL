@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSLC Model Exam Mark 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c14;
+    --surface: #111420;
+    --card: #161a27;
+    --border: #1e2438;
+    --accent: #e8c96d;
+    --accent2: #5b8ff9;
+    --text: #e8eaf0;
+    --muted: #6b7393;
+    --aplus: #ffd700;
+    --a: #4ade80;
+    --bplus: #60a5fa;
+    --b: #818cf8;
+    --cplus: #f472b6;
+    --c: #fb923c;
+    --dplus: #94a3b8;
+    --d: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated bg */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba(91,143,249,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(232,201,109,0.05) 0%, transparent 50%);
+    animation: bgPulse 8s ease-in-out infinite alternate;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  @keyframes bgPulse {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.1) rotate(2deg); }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 48px 0 40px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .header .badge {
+    display: inline-block;
+    background: rgba(232,201,109,0.12);
+    border: 1px solid rgba(232,201,109,0.3);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 6vw, 52px);
+    font-weight: 900;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .header p {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  /* Stats Bar */
+  .stats-bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .stat-chip {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    min-width: 80px;
+  }
+
+  .stat-chip .num { font-size: 22px; font-weight: 600; color: var(--accent); }
+  .stat-chip .lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* Search & Filter */
+  .controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .search-wrap {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+  }
+
+  .search-wrap input {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 12px 16px 12px 42px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-wrap input:focus { border-color: var(--accent2); }
+  .search-wrap input::placeholder { color: var(--muted); }
+
+  .search-wrap svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+  }
+
+  /* Grade Legend */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .legend-item:hover { border-color: var(--accent2); transform: translateY(-1px); }
+  .legend-item.active { background: rgba(91,143,249,0.1); border-color: var(--accent2); }
+
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* Table Wrapper */
+  .table-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    animation: fadeUp 0.8s 0.5s ease both;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+  }
+
+  thead tr {
+    background: linear-gradient(135deg, #1a1f35, #0f1220);
+    border-bottom: 1px solid var(--border);
+  }
+
+  th {
+    padding: 16px 14px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  th:first-child, th:nth-child(2) { text-align: left; }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(30,36,56,0.6);
+    transition: background 0.15s;
+  }
+
+  tbody tr:hover { background: rgba(255,255,255,0.025); }
+  tbody tr:last-child { border-bottom: none; }
+
+  td {
+    padding: 14px 14px;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  td:first-child { text-align: center; color: var(--muted); font-size: 12px; font-weight: 500; }
+  td:nth-child(2) { text-align: left; font-weight: 500; color: var(--text); }
+
+  .ad-no {
+    background: rgba(91,143,249,0.08);
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-family: monospace;
+  }
+
+  /* Mark Cell */
+  .mark-cell {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .mark-val {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mark-val::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.2s;
+    border-radius: inherit;
+  }
+
+  .mark-cell:hover .mark-val,
+  .mark-cell.active .mark-val {
+    transform: scale(1.12);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  }
+
+  .mark-cell.active .mark-val::before { opacity: 1; }
+
+  /* Grade badge shown on tap/hover */
+  .grade-reveal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.6);
+    background: var(--surface);
+    border: 2px solid currentColor;
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+    letter-spacing: 0.5px;
+  }
+
+  .mark-cell.active .grade-reveal,
+  .mark-cell:hover .grade-reveal {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .na-mark {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  /* Rank column */
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .rank-1 { background: rgba(255,215,0,0.15); color: #ffd700; border: 1px solid rgba(255,215,0,0.3); }
+  .rank-2 { background: rgba(192,192,192,0.15); color: #c0c0c0; border: 1px solid rgba(192,192,192,0.3); }
+  .rank-3 { background: rgba(205,127,50,0.15); color: #cd7f32; border: 1px solid rgba(205,127,50,0.3); }
+
+  /* Total cell */
+  .total-val {
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  /* Fail badge */
+  .fail-row td:nth-child(2) { color: #f87171; }
+
+  /* Grade colors for marks */
+  .g-aplus { color: var(--aplus); border-color: rgba(255,215,0,0.3) !important; }
+  .g-a { color: var(--a); border-color: rgba(74,222,128,0.3) !important; }
+  .g-bplus { color: var(--bplus); border-color: rgba(96,165,250,0.3) !important; }
+  .g-b { color: var(--b); border-color: rgba(129,140,248,0.3) !important; }
+  .g-cplus { color: var(--cplus); border-color: rgba(244,114,182,0.3) !important; }
+  .g-c { color: var(--c); border-color: rgba(251,146,60,0.3) !important; }
+  .g-dplus { color: var(--dplus); border-color: rgba(148,163,184,0.3) !important; }
+  .g-d { color: var(--d); border-color: rgba(248,113,113,0.3) !important; }
+
+  .grade-reveal.g-aplus { color: var(--aplus); }
+  .grade-reveal.g-a { color: var(--a); }
+  .grade-reveal.g-bplus { color: var(--bplus); }
+  .grade-reveal.g-b { color: var(--b); }
+  .grade-reveal.g-cplus { color: var(--cplus); }
+  .grade-reveal.g-c { color: var(--c); }
+  .grade-reveal.g-dplus { color: var(--dplus); }
+  .grade-reveal.g-d { color: var(--d); }
+
+  /* Subject header colors */
+  .subj-bio { color: #4ade80; }
+  .subj-chem { color: #60a5fa; }
+  .subj-phy { color: #f472b6; }
+  .subj-math { color: #e8c96d; }
+
+  /* Row animation */
+  tbody tr {
+    animation: rowIn 0.4s ease both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes rowIn {
+    from { opacity: 0; transform: translateX(-8px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Tooltip hint */
+  .hint {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 16px;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .hint span {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 12px;
+  }
+
+  /* No results */
+  .no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+
+  .no-results .icon { font-size: 40px; margin-bottom: 12px; }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 24px; }
+    th, td { padding: 10px 8px; }
+    .mark-val { width: 44px; height: 28px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <div class="badge">Academic Year 2025–26</div>
+    <h1>SSLC Model Exam<br>Mark Sheet 2026</h1>
+    <p>Science & Mathematics · Tap any mark to reveal grade</p>
+  </header>
+
+  <div class="stats-bar" id="statsBar"></div>
+
+  <div class="hint"><span>👆 Tap / hover any mark to see grade</span></div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search by name or Admission No…">
+    </div>
+  </div>
+
+  <div class="legend" id="legend"></div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Adm No</th>
+          <th class="subj-bio">Biology<br><small style="font-size:9px;letter-spacing:0">/40</small></th>
+          <th class="subj-chem">Chemistry<br><small style="font-size:9px;letter-spacing:0">/40</small></th>
+          <th class="subj-phy">Physics<br><small style="font-size:9px;letter-spacing:0">/40</small></th>
+          <th class="subj-math">Maths<br><small style="font-size:9px;letter-spacing:0">/80</small></th>
+          <th>Total<br><small style="font-size:9px;letter-spacing:0">/200</small></th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <div class="no-results" id="noResults" style="display:none">
+      <div class="icon">🔍</div>
+      <p>No students found</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Grade calculation
+function getGrade(mark, outOf) {
+  if (mark === null) return { grade: 'N/A', cls: '' };
+  const pct = (mark / outOf) * 100;
+  if (pct >= 90) return { grade: 'A+', cls: 'g-aplus' };
+  if (pct >= 80) return { grade: 'A', cls: 'g-a' };
+  if (pct >= 70) return { grade: 'B+', cls: 'g-bplus' };
+  if (pct >= 60) return { grade: 'B', cls: 'g-b' };
+  if (pct >= 50) return { grade: 'C+', cls: 'g-cplus' };
+  if (pct >= 40) return { grade: 'C', cls: 'g-c' };
+  if (pct >= 30) return { grade: 'D+', cls: 'g-dplus' };
+  return { grade: 'D', cls: 'g-d' };
+}
+
+// Raw data
+const students = [
+  { ad: 558,  name: 'Hadhi Ameen',                    bio: 26,   chem: 22.5, phy: 27.5, math: 43   },
+  { ad: 560,  name: 'Muhammed MC',                    bio: 12,   chem: 11,   phy: 15,   math: 31   },
+  { ad: 582,  name: 'Muhammed Aadhil PC',              bio: 18,   chem: 8.5,  phy: 8,    math: 21.5 },
+  { ad: 597,  name: 'Muhammed Raneef',                 bio: 34,   chem: 22.5, phy: 24.5, math: 53   },
+  { ad: 598,  name: 'Muhammed Sabeeh PK',              bio: 24.5, chem: 18,   phy: 27.5, math: 47.5 },
+  { ad: 599,  name: 'C.K Muhammed Nabil',              bio: 35,   chem: 32.5, phy: 37.5, math: 68   },
+  { ad: 600,  name: 'Muhammed Hisham AK',              bio: 31.5, chem: 14.5, phy: 17.5, math: 33.5 },
+  { ad: 602,  name: 'Ishal Ramsi',                     bio: 28,   chem: 23,   phy: 25.5, math: 64   },
+  { ad: 604,  name: 'Abdul Baary Ibn Abdul Salam',     bio: 23,   chem: 7.5,  phy: 15,   math: 35.5 },
+  { ad: 605,  name: 'Aman Abdulla',                    bio: 34.5, chem: 18,   phy: 34,   math: 50.5 },
+  { ad: 606,  name: 'Muhammed Zayan MA',               bio: 30,   chem: 25.5, phy: 20,   math: 48   },
+  { ad: 607,  name: 'Ishan Ali Shuhaib',               bio: 24.5, chem: 13,   phy: 21.5, math: 31   },
+  { ad: 608,  name: 'Muhammed Jasim Javir K',          bio: 14,   chem: 3,    phy: 15,   math: 32.5 },
+  { ad: 611,  name: 'Muhammed Raihan MNP',             bio: 9,    chem: 17,   phy: 21.5, math: 44   },
+  { ad: 613,  name: 'Muhammed M',                      bio: 20.5, chem: 16.5, phy: 18,   math: 31.5 },
+  { ad: 614,  name: 'Muhammed Shahal C',               bio: 23,   chem: 20.5, phy: 25.5, math: 40.5 },
+  { ad: 616,  name: 'Mohammed Haja',                   bio: 20,   chem: 6,    phy: 18.5, math: 31.5 },
+  { ad: 618,  name: 'Muhammed Shafi P',                bio: 6,    chem: 14,   phy: 19,   math: 43.5 },
+  { ad: 619,  name: 'Aahil CK',                        bio: 23,   chem: 10.5, phy: 21.5, math: 41.5 },
+  { ad: 620,  name: 'Muhammed Rabeeh AO',              bio: 19.5, chem: 8.5,  phy: 17.5, math: 27.5 },
+  { ad: 621,  name: 'Muhammed Razan PK',               bio: 27,   chem: 12.5, phy: 18.5, math: 24   },
+  { ad: 624,  name: 'Althaf K',                        bio: 21,   chem: 20,   phy: 19,   math: 24   },
+  { ad: 625,  name: 'Sabir S',                         bio: 33.5, chem: 22.5, phy: 26.5, math: 36.5 },
+  { ad: 627,  name: 'Muhammed Rafan',                  bio: 23,   chem: 14.5, phy: 17,   math: 33.5 },
+  { ad: 628,  name: 'Muhammed Shezin P',               bio: 26.5, chem: 13.5, phy: 16,   math: 47   },
+  { ad: 629,  name: 'Muhammed Rizan PM',               bio: 14.5, chem: 11,   phy: 12,   math: 28.5 },
+  { ad: 632,  name: 'Muhammed Hashim',                 bio: 31,   chem: 12,   phy: 22,   math: 24   },
+  { ad: 633,  name: 'Jazal Mohammad',                  bio: 35,   chem: 18,   phy: 28,   math: 44.5 },
+  { ad: 635,  name: 'Muhammed Ajmal MK',               bio: 29.5, chem: 13,   phy: 20,   math: 28.5 },
+  { ad: 683,  name: 'Ahmad Muzzammil K',               bio: 19,   chem: 15,   phy: 19.5, math: 25.5 },
+  { ad: 787,  name: 'Muhammad Saffah NP',              bio: 22.5, chem: 10,   phy: 19.5, math: 25   },
+  { ad: 789,  name: 'Abdul Nafih',                     bio: null, chem: null, phy: null, math: null },
+  { ad: 803,  name: 'Muhammed Nihal PP',               bio: 12.5, chem: 10.5, phy: 12.5, math: 23   },
+  { ad: 804,  name: 'Muhammed Rishan Rasheed',         bio: 22.5, chem: 16,   phy: 22,   math: 42   },
+];
+
+// Sort by total descending
+function getTotal(s) {
+  if (s.bio === null) return 0;
+  return (s.bio || 0) + (s.chem || 0) + (s.phy || 0) + (s.math || 0);
+}
+
+const sorted = [...students].sort((a, b) => getTotal(b) - getTotal(a));
+
+// Stats
+function buildStats() {
+  const bar = document.getElementById('statsBar');
+  const total = students.length;
+  const appeared = students.filter(s => s.bio !== null).length;
+  const toppers = sorted.filter(s => getTotal(s) > 0);
+  const highest = toppers.length ? getTotal(toppers[0]).toFixed(1) : '—';
+  const avg = appeared ? (sorted.filter(s => s.bio !== null).reduce((a,s) => a + getTotal(s), 0) / appeared).toFixed(1) : '—';
+  const failed = students.filter(s => s.bio !== null && (
+    (s.bio/40)*100 < 30 || (s.chem/40)*100 < 30 || (s.phy/40)*100 < 30 || (s.math/80)*100 < 30
+  )).length;
+
+  bar.innerHTML = [
+    { num: total, lbl: 'Students' },
+    { num: appeared, lbl: 'Appeared' },
+    { num: highest, lbl: 'Highest' },
+    { num: avg, lbl: 'Avg / 200' },
+    { num: failed, lbl: 'Failed (any)' },
+  ].map(s => `<div class="stat-chip"><div class="num">${s.num}</div><div class="lbl">${s.lbl}</div></div>`).join('');
+}
+
+// Legend
+const grades = [
+  { g: 'A+', cls: 'g-aplus', pct: '≥90%' },
+  { g: 'A',  cls: 'g-a',     pct: '≥80%' },
+  { g: 'B+', cls: 'g-bplus', pct: '≥70%' },
+  { g: 'B',  cls: 'g-b',     pct: '≥60%' },
+  { g: 'C+', cls: 'g-cplus', pct: '≥50%' },
+  { g: 'C',  cls: 'g-c',     pct: '≥40%' },
+  { g: 'D+', cls: 'g-dplus', pct: '≥30%' },
+  { g: 'D',  cls: 'g-d',     pct: '<30% Fail' },
+];
+
+const dotColors = {
+  'g-aplus': '#ffd700', 'g-a': '#4ade80', 'g-bplus': '#60a5fa',
+  'g-b': '#818cf8', 'g-cplus': '#f472b6', 'g-c': '#fb923c',
+  'g-dplus': '#94a3b8', 'g-d': '#f87171'
+};
+
+function buildLegend() {
+  const leg = document.getElementById('legend');
+  leg.innerHTML = grades.map(g =>
+    `<div class="legend-item"><span class="legend-dot" style="background:${dotColors[g.cls]}"></span>
+     <strong class="${g.cls}">${g.g}</strong> <span style="color:var(--muted)">${g.pct}</span></div>`
+  ).join('');
+}
+
+// Render mark cell
+function markCell(mark, outOf) {
+  if (mark === null) return `<td class="mark-cell"><span class="na-mark">Absent</span></td>`;
+  const { grade, cls } = getGrade(mark, outOf);
+  return `<td class="mark-cell" onclick="toggleGrade(this)">
+    <div class="mark-val ${cls}">${mark}
+      <div class="grade-reveal ${cls}" style="border-color:${dotColors[cls] || '#fff'}">${grade}</div>
+    </div>
+  </td>`;
+}
+
+function toggleGrade(cell) {
+  // Mobile tap support
+  const wasActive = cell.classList.contains('active');
+  document.querySelectorAll('.mark-cell.active').forEach(c => c.classList.remove('active'));
+  if (!wasActive) cell.classList.add('active');
+}
+
+// Build table
+let currentFilter = '';
+function buildTable(filter = '') {
+  const tbody = document.getElementById('tableBody');
+  const noR = document.getElementById('noResults');
+  const q = filter.toLowerCase();
+  
+  let rank = 0;
+  let rows = sorted.map((s, i) => {
+    const matchName = s.name.toLowerCase().includes(q);
+    const matchAd = String(s.ad).includes(q);
+    if (q && !matchName && !matchAd) return null;
+    rank++;
+    const total = getTotal(s);
+    const hasFail = s.bio !== null && (
+      (s.bio/40)*100 < 30 || (s.chem/40)*100 < 30 || (s.phy/40)*100 < 30 || (s.math/80)*100 < 30
+    );
+    const rankBadge = rank <= 3 && s.bio !== null
+      ? `<span class="rank-badge rank-${rank}">${rank}</span>`
+      : `<span style="color:var(--muted);font-size:12px">${rank}</span>`;
+    const totalColor = total >= 160 ? 'var(--a)' : total >= 120 ? 'var(--accent)' : total >= 80 ? 'var(--c)' : 'var(--d)';
+    
+    return `<tr class="${hasFail ? 'fail-row' : ''}" style="animation-delay:${rank*0.02}s">
+      <td>${rankBadge}</td>
+      <td>${s.name}${hasFail ? ' <span style="font-size:10px;color:var(--d);background:rgba(248,113,113,0.1);border-radius:4px;padding:1px 5px">FAIL</span>' : ''}</td>
+      <td><span class="ad-no">${s.ad}</span></td>
+      ${markCell(s.bio, 40)}
+      ${markCell(s.chem, 40)}
+      ${markCell(s.phy, 40)}
+      ${markCell(s.math, 80)}
+      <td><span class="total-val" style="color:${totalColor}">${s.bio !== null ? total.toFixed(1) : '—'}</span></td>
+    </tr>`;
+  }).filter(Boolean);
+
+  if (rows.length === 0) {
+    tbody.innerHTML = '';
+    noR.style.display = 'block';
+  } else {
+    tbody.innerHTML = rows.join('');
+    noR.style.display = 'none';
+  }
+}
+
+// Search
+document.getElementById('searchInput').addEventListener('input', e => {
+  buildTable(e.target.value);
+});
+
+// Init
+buildStats();
+buildLegend();
+buildTable();
+
+// Auto-dismiss active cell when clicking elsewhere
+document.addEventListener('click', e => {
+  if (!e.target.closest('.mark-cell')) {
+    document.querySelectorAll('.mark-cell.active').forEach(c => c.classList.remove('active'));
+  }
+});
+</script>
+</body>
+</html>
