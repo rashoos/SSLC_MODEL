@@ -428,7 +428,7 @@
   <header class="header">
     <div class="badge">Academic Year 2025–26</div>
     <h1>SSLC Model Exam<br>Mark Sheet 2026</h1>
-    <p>Science & Mathematics · Tap any mark to reveal grade</p>
+    <p>Science, Mathematics & English · Tap any mark to reveal grade</p>
   </header>
 
   <div class="stats-bar" id="statsBar"></div>
@@ -455,7 +455,8 @@
           <th class="subj-chem">Chemistry<br><small style="font-size:9px;letter-spacing:0">/40</small></th>
           <th class="subj-phy">Physics<br><small style="font-size:9px;letter-spacing:0">/40</small></th>
           <th class="subj-math">Maths<br><small style="font-size:9px;letter-spacing:0">/80</small></th>
-          <th>Total<br><small style="font-size:9px;letter-spacing:0">/200</small></th>
+          <th style="color:#34d399">English<br><small style="font-size:9px;letter-spacing:0">/80</small></th>
+          <th>Total<br><small style="font-size:9px;letter-spacing:0">/280</small></th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
@@ -485,46 +486,46 @@ function getGrade(mark, outOf) {
 
 // Raw data
 const students = [
-  { ad: 558,  name: 'Hadhi Ameen',                    bio: 26,   chem: 22.5, phy: 27.5, math: 43   },
-  { ad: 560,  name: 'Muhammed MC',                    bio: 12,   chem: 11,   phy: 15,   math: 31   },
-  { ad: 582,  name: 'Muhammed Aadhil PC',              bio: 18,   chem: 8.5,  phy: 8,    math: 21.5 },
-  { ad: 597,  name: 'Muhammed Raneef',                 bio: 34,   chem: 22.5, phy: 24.5, math: 53   },
-  { ad: 598,  name: 'Muhammed Sabeeh PK',              bio: 24.5, chem: 18,   phy: 27.5, math: 47.5 },
-  { ad: 599,  name: 'C.K Muhammed Nabil',              bio: 35,   chem: 32.5, phy: 37.5, math: 68   },
-  { ad: 600,  name: 'Muhammed Hisham AK',              bio: 31.5, chem: 14.5, phy: 17.5, math: 33.5 },
-  { ad: 602,  name: 'Ishal Ramsi',                     bio: 28,   chem: 23,   phy: 25.5, math: 64   },
-  { ad: 604,  name: 'Abdul Baary Ibn Abdul Salam',     bio: 23,   chem: 7.5,  phy: 15,   math: 35.5 },
-  { ad: 605,  name: 'Aman Abdulla',                    bio: 34.5, chem: 18,   phy: 34,   math: 50.5 },
-  { ad: 606,  name: 'Muhammed Zayan MA',               bio: 30,   chem: 25.5, phy: 20,   math: 48   },
-  { ad: 607,  name: 'Ishan Ali Shuhaib',               bio: 24.5, chem: 13,   phy: 21.5, math: 31   },
-  { ad: 608,  name: 'Muhammed Jasim Javir K',          bio: 14,   chem: 3,    phy: 15,   math: 32.5 },
-  { ad: 611,  name: 'Muhammed Raihan MNP',             bio: 9,    chem: 17,   phy: 21.5, math: 44   },
-  { ad: 613,  name: 'Muhammed M',                      bio: 20.5, chem: 16.5, phy: 18,   math: 31.5 },
-  { ad: 614,  name: 'Muhammed Shahal C',               bio: 23,   chem: 20.5, phy: 25.5, math: 40.5 },
-  { ad: 616,  name: 'Mohammed Haja',                   bio: 20,   chem: 6,    phy: 18.5, math: 31.5 },
-  { ad: 618,  name: 'Muhammed Shafi P',                bio: 6,    chem: 14,   phy: 19,   math: 43.5 },
-  { ad: 619,  name: 'Aahil CK',                        bio: 23,   chem: 10.5, phy: 21.5, math: 41.5 },
-  { ad: 620,  name: 'Muhammed Rabeeh AO',              bio: 19.5, chem: 8.5,  phy: 17.5, math: 27.5 },
-  { ad: 621,  name: 'Muhammed Razan PK',               bio: 27,   chem: 12.5, phy: 18.5, math: 24   },
-  { ad: 624,  name: 'Althaf K',                        bio: 21,   chem: 20,   phy: 19,   math: 24   },
-  { ad: 625,  name: 'Sabir S',                         bio: 33.5, chem: 22.5, phy: 26.5, math: 36.5 },
-  { ad: 627,  name: 'Muhammed Rafan',                  bio: 23,   chem: 14.5, phy: 17,   math: 33.5 },
-  { ad: 628,  name: 'Muhammed Shezin P',               bio: 26.5, chem: 13.5, phy: 16,   math: 47   },
-  { ad: 629,  name: 'Muhammed Rizan PM',               bio: 14.5, chem: 11,   phy: 12,   math: 28.5 },
-  { ad: 632,  name: 'Muhammed Hashim',                 bio: 31,   chem: 12,   phy: 22,   math: 24   },
-  { ad: 633,  name: 'Jazal Mohammad',                  bio: 35,   chem: 18,   phy: 28,   math: 44.5 },
-  { ad: 635,  name: 'Muhammed Ajmal MK',               bio: 29.5, chem: 13,   phy: 20,   math: 28.5 },
-  { ad: 683,  name: 'Ahmad Muzzammil K',               bio: 19,   chem: 15,   phy: 19.5, math: 25.5 },
-  { ad: 787,  name: 'Muhammad Saffah NP',              bio: 22.5, chem: 10,   phy: 19.5, math: 25   },
-  { ad: 789,  name: 'Abdul Nafih',                     bio: null, chem: null, phy: null, math: null },
-  { ad: 803,  name: 'Muhammed Nihal PP',               bio: 12.5, chem: 10.5, phy: 12.5, math: 23   },
-  { ad: 804,  name: 'Muhammed Rishan Rasheed',         bio: 22.5, chem: 16,   phy: 22,   math: 42   },
+  { ad: 558,  name: 'Hadhi Ameen',                    bio: 26,   chem: 22.5, phy: 27.5, math: 43,   eng: 71   },
+  { ad: 560,  name: 'Muhammed MC',                    bio: 12,   chem: 11,   phy: 15,   math: 31,   eng: 71   },
+  { ad: 582,  name: 'Muhammed Aadhil PC',              bio: 18,   chem: 8.5,  phy: 8,    math: 21.5, eng: 40.5 },
+  { ad: 597,  name: 'Muhammed Raneef',                 bio: 34,   chem: 22.5, phy: 24.5, math: 53,   eng: 77   },
+  { ad: 598,  name: 'Muhammed Sabeeh PK',              bio: 24.5, chem: 18,   phy: 27.5, math: 47.5, eng: 65.5 },
+  { ad: 599,  name: 'C.K Muhammed Nabil',              bio: 35,   chem: 32.5, phy: 37.5, math: 68,   eng: 73.5 },
+  { ad: 600,  name: 'Muhammed Hisham AK',              bio: 31.5, chem: 14.5, phy: 17.5, math: 33.5, eng: 68   },
+  { ad: 602,  name: 'Ishal Ramsi',                     bio: 28,   chem: 23,   phy: 25.5, math: 64,   eng: 73.5 },
+  { ad: 604,  name: 'Abdul Baary Ibn Abdul Salam',     bio: 23,   chem: 7.5,  phy: 15,   math: 35.5, eng: 59.5 },
+  { ad: 605,  name: 'Aman Abdulla',                    bio: 34.5, chem: 18,   phy: 34,   math: 50.5, eng: 70.5 },
+  { ad: 606,  name: 'Muhammed Zayan MA',               bio: 30,   chem: 25.5, phy: 20,   math: 48,   eng: 59.5 },
+  { ad: 607,  name: 'Ishan Ali Shuhaib',               bio: 24.5, chem: 13,   phy: 21.5, math: 31,   eng: 71   },
+  { ad: 608,  name: 'Muhammed Jasim Javir K',          bio: 14,   chem: 3,    phy: 15,   math: 32.5, eng: 54   },
+  { ad: 611,  name: 'Muhammed Raihan MNP',             bio: 9,    chem: 17,   phy: 21.5, math: 44,   eng: 45.5 },
+  { ad: 613,  name: 'Muhammed M',                      bio: 20.5, chem: 16.5, phy: 18,   math: 31.5, eng: 60   },
+  { ad: 614,  name: 'Muhammed Shahal C',               bio: 23,   chem: 20.5, phy: 25.5, math: 40.5, eng: 56.5 },
+  { ad: 616,  name: 'Mohammed Haja',                   bio: 20,   chem: 6,    phy: 18.5, math: 31.5, eng: 68   },
+  { ad: 618,  name: 'Muhammed Shafi P',                bio: 6,    chem: 14,   phy: 19,   math: 43.5, eng: 43   },
+  { ad: 619,  name: 'Aahil CK',                        bio: 23,   chem: 10.5, phy: 21.5, math: 41.5, eng: 52   },
+  { ad: 620,  name: 'Muhammed Rabeeh AO',              bio: 19.5, chem: 8.5,  phy: 17.5, math: 27.5, eng: 55.5 },
+  { ad: 621,  name: 'Muhammed Razan PK',               bio: 27,   chem: 12.5, phy: 18.5, math: 24,   eng: 43   },
+  { ad: 624,  name: 'Althaf K',                        bio: 21,   chem: 20,   phy: 19,   math: 24,   eng: 48.5 },
+  { ad: 625,  name: 'Sabir S',                         bio: 33.5, chem: 22.5, phy: 26.5, math: 36.5, eng: 62.5 },
+  { ad: 627,  name: 'Muhammed Rafan',                  bio: 23,   chem: 14.5, phy: 17,   math: 33.5, eng: 49.5 },
+  { ad: 628,  name: 'Muhammed Shezin P',               bio: 26.5, chem: 13.5, phy: 16,   math: 47,   eng: 54   },
+  { ad: 629,  name: 'Muhammed Rizan PM',               bio: 14.5, chem: 11,   phy: 12,   math: 28.5, eng: 41   },
+  { ad: 632,  name: 'Muhammed Hashim',                 bio: 31,   chem: 12,   phy: 22,   math: 24,   eng: 57.5 },
+  { ad: 633,  name: 'Jazal Mohammad',                  bio: 35,   chem: 18,   phy: 28,   math: 44.5, eng: 73.5 },
+  { ad: 635,  name: 'Muhammed Ajmal MK',               bio: 29.5, chem: 13,   phy: 20,   math: 28.5, eng: 51   },
+  { ad: 683,  name: 'Ahmad Muzzammil K',               bio: 19,   chem: 15,   phy: 19.5, math: 25.5, eng: 44.5 },
+  { ad: 787,  name: 'Muhammad Saffah NP',              bio: 22.5, chem: 10,   phy: 19.5, math: 25,   eng: 56   },
+  { ad: 789,  name: 'Abdul Nafih',                     bio: null, chem: null, phy: null, math: null, eng: null },
+  { ad: 803,  name: 'Muhammed Nihal PP',               bio: 12.5, chem: 10.5, phy: 12.5, math: 23,   eng: 54   },
+  { ad: 804,  name: 'Muhammed Rishan Rasheed',         bio: 22.5, chem: 16,   phy: 22,   math: 42,   eng: 50.5 },
 ];
 
 // Sort by total descending
 function getTotal(s) {
   if (s.bio === null) return 0;
-  return (s.bio || 0) + (s.chem || 0) + (s.phy || 0) + (s.math || 0);
+  return (s.bio || 0) + (s.chem || 0) + (s.phy || 0) + (s.math || 0) + (s.eng || 0);
 }
 
 const sorted = [...students].sort((a, b) => getTotal(b) - getTotal(a));
@@ -538,14 +539,14 @@ function buildStats() {
   const highest = toppers.length ? getTotal(toppers[0]).toFixed(1) : '—';
   const avg = appeared ? (sorted.filter(s => s.bio !== null).reduce((a,s) => a + getTotal(s), 0) / appeared).toFixed(1) : '—';
   const failed = students.filter(s => s.bio !== null && (
-    (s.bio/40)*100 < 30 || (s.chem/40)*100 < 30 || (s.phy/40)*100 < 30 || (s.math/80)*100 < 30
+    (s.bio/40)*100 < 30 || (s.chem/40)*100 < 30 || (s.phy/40)*100 < 30 || (s.math/80)*100 < 30 || (s.eng/80)*100 < 30
   )).length;
 
   bar.innerHTML = [
     { num: total, lbl: 'Students' },
     { num: appeared, lbl: 'Appeared' },
     { num: highest, lbl: 'Highest' },
-    { num: avg, lbl: 'Avg / 200' },
+    { num: avg, lbl: 'Avg / 280' },
     { num: failed, lbl: 'Failed (any)' },
   ].map(s => `<div class="stat-chip"><div class="num">${s.num}</div><div class="lbl">${s.lbl}</div></div>`).join('');
 }
@@ -609,12 +610,12 @@ function buildTable(filter = '') {
     rank++;
     const total = getTotal(s);
     const hasFail = s.bio !== null && (
-      (s.bio/40)*100 < 30 || (s.chem/40)*100 < 30 || (s.phy/40)*100 < 30 || (s.math/80)*100 < 30
+      (s.bio/40)*100 < 30 || (s.chem/40)*100 < 30 || (s.phy/40)*100 < 30 || (s.math/80)*100 < 30 || (s.eng/80)*100 < 30
     );
     const rankBadge = rank <= 3 && s.bio !== null
       ? `<span class="rank-badge rank-${rank}">${rank}</span>`
       : `<span style="color:var(--muted);font-size:12px">${rank}</span>`;
-    const totalColor = total >= 160 ? 'var(--a)' : total >= 120 ? 'var(--accent)' : total >= 80 ? 'var(--c)' : 'var(--d)';
+    const totalColor = total >= 224 ? 'var(--a)' : total >= 168 ? 'var(--accent)' : total >= 112 ? 'var(--c)' : 'var(--d)';
     
     return `<tr class="${hasFail ? 'fail-row' : ''}" style="animation-delay:${rank*0.02}s">
       <td>${rankBadge}</td>
@@ -624,6 +625,7 @@ function buildTable(filter = '') {
       ${markCell(s.chem, 40)}
       ${markCell(s.phy, 40)}
       ${markCell(s.math, 80)}
+      ${markCell(s.eng, 80)}
       <td><span class="total-val" style="color:${totalColor}">${s.bio !== null ? total.toFixed(1) : '—'}</span></td>
     </tr>`;
   }).filter(Boolean);
@@ -636,7 +638,6 @@ function buildTable(filter = '') {
     noR.style.display = 'none';
   }
 }
-
 
 // Search
 document.getElementById('searchInput').addEventListener('input', e => {
